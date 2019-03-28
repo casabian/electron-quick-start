@@ -11,13 +11,17 @@ function createWindow () {
     width: 800,
     height: 600,
     webPreferences: {
+      offscreen: true,
       nodeIntegration: true
     }
   })
 
   // and load the index.html of the app.
   mainWindow.loadFile('index.html')
-
+  mainWindow.webContents.on('paint', (event, dirty, image) => {
+      // updateBitmap(dirty, image.getBitmap())
+      console.log('paint event');
+  });
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
 
